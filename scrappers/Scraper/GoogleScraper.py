@@ -6,6 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 import sys
 import json
+import unicodedata
 
 # Method for get json of arg
 def GetArguments():
@@ -57,20 +58,18 @@ def lookupGoogle(driver, textToSearch, sitesToSearch):
             for url in listURLScrap:
                 listURL.append(url.get_attribute("href"))
             for title in listTitleScrap:
-                listTitle.append(title.text.encode('utf-8'))
+                listTitle.append(title.text)
             for content in listContentScrap:
-                listContent.append(content.text.encode('utf-8'))
-
-            # listTitle.append(listTitleScrap)
+                listContent.append(content.text)
             
-            # for idx, val in enumerate(listURL):
-            #     if ("," not in val):
+            # listTitle.append(listTitleScrap)
+
     except Exception as e:
         print("type error: " + str(e))
     finally:
         driver.close()
-        json = {"URL": listURL, "Title" : listTitle, "Content": listContent}
-        return json.dumps(json)
+        jsonObjetc = {"url": listURL, "titulo" : listTitle, "contenido": listContent}
+        return json.dumps(jsonObjetc)
 
 if __name__ == "__main__":
     try:
@@ -86,9 +85,9 @@ if __name__ == "__main__":
         # Call scraper google
         driver = init_driver("https://www.google.com/")
         if driver is not None:
-            json = lookupGoogle(driver, textToSearch, sitesToSearch)
+            jsonResult = lookupGoogle(driver, textToSearch, sitesToSearch)
 
-            print(listURL)
+            print(jsonResult)
     except Exception as e:
         print("type error: " + str(e))
     finally:

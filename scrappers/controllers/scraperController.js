@@ -1,7 +1,7 @@
 'use strict'
 // Modulos
-var spawn = require("child_process").spawn;
-var pathPy = "../Scraper/GoogleScraper.py";
+// var spawn = require("child_process").spawn;
+var pathPy = "../andres/Scraper/GoogleScraper.py";
 // Modelos
 
 // Servicios
@@ -69,16 +69,25 @@ function scraper(req, res) {
         console.log(entitiesArg);
         console.log(fuentesArg);
 
-        const pythonProcess = spawn('python', [pathPy, entitiesArg, fuentesArg]);
+        // const pythonProcess = spawn('python', [pathPy, entitiesArg, fuentesArg]);
 
-        pythonProcess.stdout.on('data', (data) => {
-            // Do something with the data returned from python script
+        // pythonProcess.stdout.on('data', (data) => {
+        //     console.log(data)
+        // });
+
+        var spawn = require("child_process").spawn;
+        var process = spawn('python', ["./Scraper/GoogleScraper.py",
+            entitiesArg,fuentesArg
+        ]);
+
+        process.stdout.on('data', function (data) {
+            res.send(data.toString());
         });
     }
 
-    res.status(200).send({
-        message: 'Prueba Scraper'
-    })
+    // res.status(200).send({
+    //     message: 'Prueba Scraper'
+    // })
 }
 
 // Metodo privados
