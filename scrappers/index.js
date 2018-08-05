@@ -1,3 +1,8 @@
-console.log('Inicializando scrappers');
+'use strict'
 
-console.log('Creando rama scrappers');
+var app = require('./app');
+var port = 3789;
+
+app.listen(port, () => {
+    console.log('El servidor nodeJS esta correindo...');
+});
