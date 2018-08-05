@@ -1,0 +1,17 @@
+[
+    {
+        "nombre":"Actualidad Panamericana",
+        "url":"www.actualidadpanamericana.com",
+        "tipo": "falsa"
+    },
+    {
+        "nombre":"Revista Semana",
+        "url":"www.semana.com",
+        "tipo": "veridica"
+    },
+    {
+        "nombre":"El Espectador",
+        "url":"www.elespectador.com",
+        "tipo": "veridica"
+    }
+]

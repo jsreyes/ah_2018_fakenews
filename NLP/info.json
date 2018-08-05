@@ -1,0 +1,34 @@
+{
+    "articulo":"Claudia Merlano es hija de Petro",
+    "keywordsArticulo": [
+        {
+            "text":"Claudia Merlano",
+            "relevance":"0.98"
+        },
+        {
+            "text":"hija",
+            "relevance":"0.75"
+        },
+        {
+            "text":"Petro",
+            "relevance":"0.89"
+        }
+    ],
+    "infoScrapper": [
+        {
+            "titulo":"La supuesta hija no reconocida de Gustavo Petro",
+            "url":"https://www.semana.com/nacion/articulo/la-supuesta-hija-no-reconocida-de-gustavo-petro/570806",
+            "Contenido":"El candidato de la Colombia Humana desmintió a través de sus redes sociales la imagen de una joven que él supuestamente habría negado. Acusó a la campaña de su opositor de crear una estrategia política basada en la mentira. La supuesta hija no reconocida de Gustavo Petro La hija no reconocida de Petro, otra mentira de la campaña."
+        },
+        {
+            "titulo":"Supuesta hija no reconocida por Petro es Mía Kalifa",
+            "url":"https://www.elespectador.com/noticias/actualidad/nueva-fake-news-la-supuesta-hija-no-reconocida-de-petro-es-en-realidad-una-actriz-porno-articulo-793757",
+            "Contenido":"Del lado de la campaña de Iván Duque también salieron a desmentir una cadena falsa que circula en redes sociales."
+        },
+        {
+            "titulo":"Claudia Merlano, la hija no reconocida de Petro",
+            "url":"https://actualidadpanamericana.com/claudia-merlano-hija-no-reconocida-de-petro/",
+            "Contenido":"Ella es Claudia Merlano, la hija negada de Gustavo Petro, la cual nunca contó con su ayuda. Lo demandaron por alimentos, pero señor Gustavo Petro jamás respondió y hoy esta mujer con 23 años ya terminó su carrera de Administración de empresas"
+        }
+    ]
+}
