@@ -10,11 +10,12 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { Observable } from 'rxjs';
 import { ObserversModule } from '@angular/cdk/observers';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
     // TruncatePipe
   ],
   imports: [
@@ -29,7 +30,9 @@ import { ObserversModule } from '@angular/cdk/observers';
     MatButtonModule,
     HttpClientModule,
     HttpModule,
-    ObserversModule
+    ObserversModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

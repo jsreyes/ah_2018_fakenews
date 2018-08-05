@@ -1,15 +1,19 @@
 <p>Por favor ingrese el texto de la noticia para validar sí es una fake new y el país al que corresponde la noticia</p>
 
-<mat-form-field class="fake-new-width">
-    <textarea matInput placeholder="Noticia a Validar"></textarea>
-</mat-form-field>
+<form (ngSubmit)="validateArticle(regiForm.value)" [formGroup]="regiForm">
 
-<mat-form-field>
-    <mat-select placeholder="Pais">
-        <mat-option *ngFor="let country of countries" [value]="country.value">
-            {{country.viewValue}}
-        </mat-option>
-    </mat-select>
-</mat-form-field>
+    <mat-form-field class="fake-new-width">
+        <textarea matInput type="text" placeholder="Noticia a Validar" formControlName="articulo"></textarea>
+    </mat-form-field>
 
-&nbsp;&nbsp;&nbsp;<button mat-stroked-button class="button" color="primary">Validar Noticia</button>
+    <mat-form-field>
+        <mat-select placeholder="Pais" formControlName="pais">
+            <mat-option *ngFor="let country of countries" [value]="country.viewValue">
+                {{country.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    &nbsp;&nbsp;&nbsp;<button mat-stroked-button class="button" color="primary">Validar Noticia</button>
+
+</form>
