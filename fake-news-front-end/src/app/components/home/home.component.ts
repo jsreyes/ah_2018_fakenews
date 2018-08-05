@@ -54,9 +54,11 @@ private probabilidad: any;
     let object;
     object = form;
     this.articleService.createArticle(object).subscribe(response => {
-      console.log(response);
-      this.probabilidad = response.porcentaje * 100;
-      this.flag = true;
+
+      setTimeout(() => {
+        console.log(response);
+        this.probabilidad = response.porcentaje * 100;
+        this.flag = true;   }, 10000);
     }, err => {
       console.error(err);
     });
