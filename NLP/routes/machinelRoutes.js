@@ -2,6 +2,7 @@
 
 var express = require('express')
 var puntajeNoticia = require('../controllers/puntajeNoticia')
+var cargueDatos = require('../controllers/cargueDatos')
 
 var api = express.Router()
 
