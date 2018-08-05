@@ -5,7 +5,6 @@ var naturalLanguageUnderstandingController = require('../controllers/naturalLang
 
 var api = express.Router();
 
-api.get('/get-all', naturalLanguageUnderstandingController.getAll);
 api.post('/enviar-articulo', naturalLanguageUnderstandingController.postArticulo);
 
 
