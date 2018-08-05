@@ -1,3 +1,13 @@
 .fake-new-width {
     width: 100%;
 }
+
+.button {
+    position: fixed;
+    right: 500px;
+    top: 290px;
+}
+
+.color {
+    color: red;
+}

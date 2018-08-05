@@ -1,46 +1,64 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
+import { FormControl, FormBuilder, FormGroup, Validators, FormsModule, NgForm, FormGroupDirective } from '@angular/forms';
+import { ArticleService } from '../../../app/services/article.service';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  providers: [ArticleService]
 })
+
 export class HomeComponent implements OnInit {
- logros: ILogro[];
- titulo: string = 'Bienvenidos';
- foods: Food[] = [
-  {value: 'steak-0', viewValue: 'Steak'},
-  {value: 'pizza-1', viewValue: 'Pizza'},
-  {value: 'tacos-2', viewValue: 'Tacos'}
+ public regiForm: FormGroup;
+ private titulo = 'Bienvenidos';
+ private countries = [
+  {value: 1, viewValue: 'Colombia'},
+  {value: 2, viewValue: 'Ecuador'},
+  {value: 3, viewValue: 'Argentina'},
+  {value: 4, viewValue: 'Venezuela'},
+  {value: 5, viewValue: 'Brasil'}
 ];
 
- constructor() { }
+private object = {
+  articulo: '',
+  pais: ''
+};
+
+private flag = false;
+private probabilidad: any;
+
+ constructor(
+  private fb: FormBuilder,
+  private articleService: ArticleService,
+ ) {
+ }
 
  ngOnInit() {
-     this.logros = this.getLogros();
-     console.log(this.logros);
+  this.initForm();
+
+     console.log(this.countries);
  }
 
- getLogros(): ILogro[] {
-  return [{
-     id: 1,
-     title: 'Logré algo muy interesante',
-     description: 'Lorem ipsum dolor sit amet'
-  }, {
-     id: 2,
-     title: 'Logré otra cosa muy interesante',
-     description: 'Lorem ipsum dolor sit amet'
-  }, {
-     id: 3,
-     title: 'Logré algo aún mas interesante',
-     description: 'Lorem ipsum dolor sit amet'
-  }
- ];
- }
+ initForm() {
+  this.regiForm = this.fb.group({
+    'articulo': new FormControl(this.object.articulo , Validators.compose([Validators.required])),
+    'pais': new FormControl(this.object.pais, Validators.compose([Validators.required])),
+  });
 }
 
-interface ILogro{
-  id: number;
-  title: string;
-  description ?: string;
+  validateArticle(form) {
+    let object;
+    object = form;
+    this.articleService.createArticle(object).subscribe(response => {
+      console.log(response);
+      this.probabilidad = response.porcentaje * 100;
+      this.flag = true;
+    }, err => {
+      console.error(err);
+    });
+  }
 }
