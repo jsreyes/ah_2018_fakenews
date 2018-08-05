@@ -3,3 +3,4 @@ back-end/node_modules/
 fake-news-front-end/node_modules/
 scrappers/Scraper/geckodriver.exe
 scrappers/Scraper/geckodriver.log
+scrappers/geckodriver.log
