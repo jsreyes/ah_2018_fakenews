@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 import sys
+import json
 
 # Method for get json of arg
 def GetArguments():
@@ -33,45 +34,62 @@ def init_driver(url):
 
 # Scraping core
 def lookupGoogle(driver, textToSearch, sitesToSearch):
+    listURL = []
     listTitle = []
+    listContent = []
     try:
-        # Driver navegador firefox
-        driver = webdriver.Firefox()
-        driver.get()
-        assert "Google" in driver.title
-
         for site in sitesToSearch:
             elem = driver.find_element_by_name("q")
 
             elem.clear()
-            elem.send_keys(textToSearch + " site:" + sitesToSearch)
+            elem.send_keys(textToSearch + " site:" + site)
             elem.send_keys(Keys.ENTER)
 
+            listURLScrap = WebDriverWait(driver, 5).until(
+                EC.presence_of_all_elements_located((By.XPATH, '//div[@class="rc"]/h3[@class="r"]/a'))
+            )
             listTitleScrap = WebDriverWait(driver, 5).until(
                 EC.presence_of_all_elements_located((By.XPATH, '//div[@class="rc"]/h3[@class="r"]'))
-            ).text.encode('utf-8')
+            )
+            listContentScrap = WebDriverWait(driver, 5).until(
+                EC.presence_of_all_elements_located((By.XPATH, '//span[@class="st"]'))
+            )
+            for url in listURLScrap:
+                listURL.append(url.get_attribute("href"))
+            for title in listTitleScrap:
+                listTitle.append(title.text.encode('utf-8'))
+            for content in listContentScrap:
+                listContent.append(content.text.encode('utf-8'))
 
-            listTitle.append(listTitleScrap)
-
-            for element in listElement:
-                print(element.text.encode('utf-8'))
-            # print(element.text.encode('latin-1'))
-
+            # listTitle.append(listTitleScrap)
+            
+            # for idx, val in enumerate(listURL):
+            #     if ("," not in val):
     except Exception as e:
         print("type error: " + str(e))
     finally:
         driver.close()
-
-        return listTitle
+        json = {"URL": listURL, "Title" : listTitle, "Content": listContent}
+        return json.dumps(json)
 
 if __name__ == "__main__":
-    # Get arguments sys
-    ListArguments = GetArguments()
-    textToSearch = ','.join(ListArguments[0])
-    sitesToSearch = ListArguments[1]
+    try:
+        # Get arguments sys
+        ListArguments = GetArguments()
+        textToSearch = ListArguments[1].replace("'", "")
+        sitesToSearch = []
+        if "," not in ListArguments[2]:
+            sitesToSearch.append(ListArguments[2].replace("'", ""))
+        else:
+            sitesToSearch = ListArguments[2].replace("'", "").split(",")
+        
+        # Call scraper google
+        driver = init_driver("https://www.google.com/")
+        if driver is not None:
+            json = lookupGoogle(driver, textToSearch, sitesToSearch)
 
-    # Call scraper google
-    driver = init_driver("https://www.google.com/")
-    if driver is not None:
-        print("true")
-        lookup(driver, textToSearch, sitesToSearch)
+            print(listURL)
+    except Exception as e:
+        print("type error: " + str(e))
+    finally:
+        sys.stdout.flush()
