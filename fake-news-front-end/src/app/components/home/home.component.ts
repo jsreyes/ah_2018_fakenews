@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CountryService } from '../../services/country.service';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
  logros: ILogro[];
+ paises = [];
  titulo: any = 'Bienvenidos';
  foods = [
   {value: 'steak-0', viewValue: 'Steak'},
@@ -14,11 +16,13 @@ export class HomeComponent implements OnInit {
   {value: 'tacos-2', viewValue: 'Tacos'}
 ];
 
- constructor() { }
+ constructor(
+  private countryService: CountryService,
+ ) { }
 
  ngOnInit() {
      this.logros = this.getLogros();
-     console.log(this.logros);
+     console.log(this.countryService.getCountries());
  }
 
  getLogros(): ILogro[] {

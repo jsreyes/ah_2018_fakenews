@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './components/home/home.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule, MatListModule, MatCardModule, MatFormFieldModule, MatSelectModule, MatButtonModule } from '@angular/material';
+import { CountryService } from './services/country.service';
 // import { TruncatePipe } from './pipes/truncate.pipe'
 
 @NgModule({
