@@ -1,8 +1,9 @@
 'use strict'
 
-var articulo = require('../models/articulo');
+var articulo = require('../models/articulo.model');
 var utils = require('../utils');
 
+//este controlador funciona para hacer peticiones hacia y desde el scraper
 function postArticulo(req,res){
   var params = req.body;
   console.log("post with: ",params);
@@ -22,7 +23,6 @@ function postArticulo(req,res){
   }
 }
 
-
-  module.exports = {
+module.exports = {
     postArticulo
   }

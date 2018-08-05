@@ -3,8 +3,7 @@
 var semantic_role = {
     subject : {
         text: String
-    },
-    sentence: String,
+    },    sentence: String,
     object: {
       text: String,  
     },
