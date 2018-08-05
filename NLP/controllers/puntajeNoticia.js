@@ -5,58 +5,59 @@ var arrayList = require('array-list')
 
 let info;
 let fuentes;
-let puntajeFinal;
+let porcentajes;
+let puntajeFinal=0;
 let puntajesUnicos;
 let arregloPuntaje = arrayList();
+let count;
 
 function cargueVariables(){
     let rawInfo = fs.readFileSync('info.json');  
     info = JSON.parse(rawInfo);  
     let rawFuentes = fs.readFileSync('fuentes.json');  
     fuentes = JSON.parse(rawFuentes);  
-    console.log(info.articulo);  
-    console.log("y ahora fuentes");
-    console.log(fuentes[1].nombre);
+    let rawPorcentajes = fs.readFileSync('porcentajes.json');
+    porcentajes = JSON.parse(rawPorcentajes);
 }  
 
 function compararFuentes(){
     cargueVariables();
-    var count = Object.keys(info.infoScraper).length;
-    console.log("Cuenta: "+count);
-    info.infoScraper.forEach(elemento => {
-        console.log("Soy el elemento parcero: "+ elemento.url)    
-        fuentesConfiables(elemento.url);    
+    count = Object.keys(info.infoScraper).length;
+    info.infoScraper.forEach(elemento => {    
+        fuentes.forEach(elementourl => {
+        if(elemento.url.indexOf(elementourl.url)>=0){
+            elemento.puntaje=asignarPuntajesFuente(elementourl.tipo, 100/count, elemento.titulo);
+            puntajeFinal = puntajeFinal + elemento.puntaje;
+            }
+        });   
     });
+    return puntajeFinal;
 }
 
-function fuentesConfiables(url){
-    fuentes.forEach(elemento => {
-        if(url.indexOf(elemento.url)>=0){
-            console.log("Hice match con: "+url+" y el elemento "+elemento.url);
-            asignarPuntajes(elemento.tipo);
-        }
-        }
-    );
-}
 
-function asignarPuntajes(tipoFuente){
+function asignarPuntajesFuente(tipoFuente, porcentaje, tituloNoticia){
     switch(tipoFuente){
-        case "confiable":
+        case porcentajes.fuenteConfiable:
+            if(tituloNoticia.indexOf(porcentajes.texto>=0))
+                porcentaje = porcentajes.confiable;
             break;
-        case "falsa":
+        case porcentajes.fuenteNoConfiable:
+            porcentaje = porcentajes.noconfiable;
+            break;
+        default:
             break;
     }
+    return porcentaje;
 }
 
 function machinel(req, res) {
-    compararFuentes();
+    var puntaje = compararFuentes();
     res.status(200).send({
 
-        message: info.articulo
+        message: "El porcentaje de veracidad es del: "+puntaje+"%"
+        
     })
 }
-
-// Metodo privados
 
 module.exports = {
     machinel
