@@ -5,7 +5,7 @@ var naturalLanguageController = require('../controllers/naturalLanguage.controll
 
 var api = express.Router();
 
-api.post('/enviar-articulo', naturalLanguageController.postArticulo);
+api.post('/enviar-articulo', naturalLanguageController.enviarArticulo);
 
 
 module.exports = api;

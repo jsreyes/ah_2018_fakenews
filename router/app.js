@@ -7,7 +7,8 @@ var app = express();
 
 //cargando rutas
 var dataRoutes = require('./api/routes/data.route');
-var naturalLanguageController = require('./api/routes/naturalLanguage.route');
+var naturalLanguageRoute = require('./api/routes/naturalLanguage.route');
+var machineLearningRoute = require('./api/routes/machineLearning.route');
 
 app.use((req, res, next) =>{
     res.header('Access-Control-Allow-Origin', '*')
@@ -19,7 +20,8 @@ app.use((req, res, next) =>{
 
 app.use(bodyParser.urlencoded({extended:false}));
 
-app.use('/api/natural-language', naturalLanguageController);
+app.use('/api/natural-language', naturalLanguageRoute);
+app.use('/api/machine-learning', machineLearningRoute);
 app.use('/api/data', dataRoutes);
 
 

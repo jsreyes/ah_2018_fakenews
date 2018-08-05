@@ -5,6 +5,10 @@ var utils = require('../utils');
 
 //este controlador funciona para hacer peticiones hacia y desde el front end de la aplicación
 
+function getAll(req,res){
+  res.status(200).send({message: 'OK',status:200})
+}
+
 function postArticulo(req,res){
   var params = req.body;
   console.log("post with: ",params);
@@ -25,5 +29,6 @@ function postArticulo(req,res){
 }
 
 module.exports = {
-    postArticulo
+    postArticulo,
+    getAll
   }
