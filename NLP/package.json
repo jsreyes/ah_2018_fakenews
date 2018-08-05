@@ -1,0 +1,32 @@
+{
+  "name": "nlp",
+  "version": "1.0.0",
+  "description": "NLP de acuerdo al scraper que se envía",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsreyes/ah_2018_fakenews.git"
+  },
+  "author": "Camilo Torres",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jsreyes/ah_2018_fakenews/issues"
+  },
+  "homepage": "https://github.com/jsreyes/ah_2018_fakenews#readme",
+  "dependencies": {
+    "array-list": "^1.0.7",
+    "arraylist": "^0.1.0",
+    "body-parser": "^1.18.3",
+    "connect-multiparty": "^2.1.1",
+    "contains": "^0.1.1",
+    "express": "^4.16.3",
+    "moment": "^2.22.2",
+    "mongoose": "^5.2.6"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.3"
+  }
+}
