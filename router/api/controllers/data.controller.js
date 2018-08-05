@@ -2,6 +2,7 @@
 
 var articulo = require('../models/articulo.model');
 var utils = require('../utils');
+var scraper = require('../controllers/scraper.controller')
 
 //este controlador funciona para hacer peticiones hacia y desde el front end de la aplicación
 
@@ -11,13 +12,12 @@ function getAll(req,res){
 
 function postArticulo(req,res){
   var params = req.body;
-  console.log("post with: ",params);
-  articulo.articulo = params.articulo;
-  articulo.pais = params.pais;
-
-  if(!utils.compararLlaves(params,articulo)){
-    res.status(500).send({message: 'La estructura del archivo no coincide',status:500})
-  }else{
+  //params = JSON.parse(params);
+  //articulo.articulo = params.articulo;
+  //articulo.pais = params.pais;
+  res.status(200).send({porcentaje:0.18,status:200})
+  console.log("post on data with: ", params);
+  
     if(articulo.articulo && articulo.pais){
       res.status(200).send({message: 'Articulo enviado correctamente',status:200})
     }else if(!articulo.articulo){
@@ -25,7 +25,6 @@ function postArticulo(req,res){
     }else{
       res.status(500).send({message: 'No se ha enviado el país de procedencia del articulo',status:500})
     }
-  }
 }
 
 module.exports = {
