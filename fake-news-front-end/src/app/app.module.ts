@@ -4,8 +4,12 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatFormField, MatInputModule, MatListModule, MatCardModule, MatFormFieldModule, MatSelectModule } from '@angular/material';
-// import { TruncatePipe } from './pipes/truncate.pipe'
+import { MatFormField, MatInputModule, MatListModule, MatCardModule, MatFormFieldModule, MatSelectModule,
+         MatButtonModule } from '@angular/material';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
+import { Observable } from 'rxjs';
+import { ObserversModule } from '@angular/cdk/observers';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,11 @@ import { MatFormField, MatInputModule, MatListModule, MatCardModule, MatFormFiel
     MatFormFieldModule,
     MatInputModule,
     BrowserAnimationsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonModule,
+    HttpClientModule,
+    HttpModule,
+    ObserversModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,3 +1,9 @@
 .fake-new-width {
     width: 100%;
 }
+
+.button {
+    position: fixed;
+    right: 500px;
+    top: 238px;
+}

@@ -5,9 +5,11 @@
 </mat-form-field>
 
 <mat-form-field>
-    <mat-select placeholder="Favorite food">
-        <mat-option *ngFor="let food of foods" [value]="food.value">
-            {{food.viewValue}}
+    <mat-select placeholder="Pais">
+        <mat-option *ngFor="let country of countries" [value]="country.value">
+            {{country.viewValue}}
         </mat-option>
     </mat-select>
 </mat-form-field>
+
+&nbsp;&nbsp;&nbsp;<button mat-stroked-button class="button" color="primary">Validar Noticia</button>
