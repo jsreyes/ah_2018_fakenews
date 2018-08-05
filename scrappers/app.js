@@ -1,6 +1,7 @@
 'use strict'
 
 var express = require('express')
+var bodyParser = require('body-parser')
 
 var app = express()
 
@@ -8,7 +9,8 @@ var app = express()
 var scraperRoutes = require('./routes/scraperRoutes')
 
 // middlewares
-
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 // configurar cabeceras y cors
 app.use((req, res, next) =>{
