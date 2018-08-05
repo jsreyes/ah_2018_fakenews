@@ -3,7 +3,7 @@
 <form (ngSubmit)="validateArticle(regiForm.value)" [formGroup]="regiForm">
 
     <mat-form-field class="fake-new-width">
-        <textarea matInput type="text" placeholder="Noticia a Validar" formControlName="articulo"></textarea>
+        <textarea matInput type="text" placeholder="Noticia a Validar" formControlName="articulo" rows="5"></textarea>
     </mat-form-field>
 
     <mat-form-field>
@@ -17,3 +17,5 @@
     &nbsp;&nbsp;&nbsp;<button mat-stroked-button class="button" color="primary">Validar Noticia</button>
 
 </form>
+
+<p *ngIf="flag" class="color">La veracidad de la noticia corresponde al {{probabilidad}}% </p>

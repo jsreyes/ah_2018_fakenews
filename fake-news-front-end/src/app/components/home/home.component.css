@@ -5,5 +5,9 @@
 .button {
     position: fixed;
     right: 500px;
-    top: 238px;
+    top: 290px;
+}
+
+.color {
+    color: red;
 }

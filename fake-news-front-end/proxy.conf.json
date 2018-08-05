@@ -1,0 +1,6 @@
+{
+    "/api": {
+        "target": "http://192.168.20.240:3977/api/data/enviar-articulo",
+        "changeOrigin": true
+    }
+}

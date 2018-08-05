@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { FormControl, FormBuilder, FormGroup, Validators, FormsModule, NgForm, FormGroupDirective } from '@angular/forms';
+import { ArticleService } from '../../../app/services/article.service';
 
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  providers: [ArticleService]
 })
 
 export class HomeComponent implements OnInit {
@@ -26,8 +28,12 @@ private object = {
   pais: ''
 };
 
+private flag = false;
+private probabilidad: any;
+
  constructor(
-  private fb: FormBuilder
+  private fb: FormBuilder,
+  private articleService: ArticleService,
  ) {
  }
 
@@ -47,6 +53,12 @@ private object = {
   validateArticle(form) {
     let object;
     object = form;
-    console.log(object);
+    this.articleService.createArticle(object).subscribe(response => {
+      console.log(response);
+      this.probabilidad = response.porcentaje * 100;
+      this.flag = true;
+    }, err => {
+      console.error(err);
+    });
   }
 }
