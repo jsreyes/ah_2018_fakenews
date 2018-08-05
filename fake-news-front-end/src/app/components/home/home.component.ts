@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
  logros: ILogro[];
- titulo: string = 'Bienvenidos';
+ titulo: any = 'Bienvenidos';
  foods = [
   {value: 'steak-0', viewValue: 'Steak'},
   {value: 'pizza-1', viewValue: 'Pizza'},
@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
  }
 }
 
-interface ILogro{
+interface ILogro {
   id: number;
   title: string;
   description ?: string;
